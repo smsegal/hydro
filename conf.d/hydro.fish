@@ -6,6 +6,10 @@ function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
 end
 
+function _hydro_venv --on-variable VIRTUAL_ENV
+  set --global _hydro_venv "("(string split -r -m1 / $VIRTUAL_ENV)[-1]")"
+end
+
 function _hydro_pwd --on-variable PWD
     set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
     if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
